@@ -17,4 +17,9 @@ public class ChatMessagesService : IChatMessagesService
     {
         return await _repository.CreateMessageAsync(request, cancellationToken);
     }
+
+    public async ValueTask<IEnumerable<ChatMessageDto>> GetMessagesAsync(CancellationToken cancellationToken)
+    {
+        return await _repository.GetMessagesAsync(cancellationToken);
+    }
 }

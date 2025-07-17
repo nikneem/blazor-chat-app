@@ -9,3 +9,20 @@ GET {{HexMaster.BlazorChat.Server_HostAddress}}/todos/1
 Accept: application/json
 
 ###
+
+# Test create chat message
+POST {{HexMaster.BlazorChat.Server_HostAddress}}/chat/messages
+Content-Type: application/json
+
+{
+  "sender": "John Doe",
+  "message": "Hello, this is my first message!"
+}
+
+###
+
+# Test get all chat messages (in descending order)
+GET {{HexMaster.BlazorChat.Server_HostAddress}}/chat/messages
+Accept: application/json
+
+###

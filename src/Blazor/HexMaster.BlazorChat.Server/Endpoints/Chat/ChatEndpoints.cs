@@ -8,18 +8,20 @@ public static class ChatApplicationEndpoints
 
     public static WebApplication MapChatEndpoints(this WebApplication app)
     {
-        app.MapGroup("/chat")
-            .WithTags("Chat")
-            .MapPost("/messages", async (CreateChatMessageRequest request, IChatMessagesService chatMessageService, HttpContext context) =>
-            {
-                var message = await chatMessageService.CreateMessage(request, context.RequestAborted);
-                return Results.Created($"/chat/messages/{message.Id}", message);
-            });
-            //.MapGet("/messages", async (IChatMessageService chatMessageService) =>
-            //{
-            //    var messages = await chatMessageService.GetMessagesAsync();
-            //    return Results.Ok(messages);
-            //});
+        var chatGroup = app.MapGroup("/chat")
+            .WithTags("Chat");
+            
+        chatGroup.MapPost("/messages", async (CreateChatMessageRequest request, IChatMessagesService chatMessageService, HttpContext context) =>
+        {
+            var message = await chatMessageService.CreateMessage(request, context.RequestAborted);
+            return Results.Created($"/chat/messages/{message.Id}", message);
+        });
+        
+        chatGroup.MapGet("/messages", async (IChatMessagesService chatMessageService, HttpContext context) =>
+        {
+            var messages = await chatMessageService.GetMessagesAsync(context.RequestAborted);
+            return Results.Ok(messages);
+        });
 
         return app;
     }

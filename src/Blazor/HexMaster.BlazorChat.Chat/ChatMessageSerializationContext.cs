@@ -5,6 +5,8 @@ namespace HexMaster.BlazorChat.Chat;
 
 [JsonSerializable(typeof(CreateChatMessageRequest))]
 [JsonSerializable(typeof(CreateChatMessageResponse))]
+[JsonSerializable(typeof(ChatMessageDto))]
+[JsonSerializable(typeof(IEnumerable<ChatMessageDto>))]
 public partial class ChatMessageSerializationContext : JsonSerializerContext
 {
 }

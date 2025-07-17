@@ -10,5 +10,5 @@ namespace HexMaster.BlazorChat.Chat.Abstractions.Services;
 public interface IChatMessagesService
 {
     ValueTask<CreateChatMessageResponse> CreateMessage(CreateChatMessageRequest request, CancellationToken cancellationToken);
-
+    ValueTask<IEnumerable<ChatMessageDto>> GetMessagesAsync(CancellationToken cancellationToken);
 }
