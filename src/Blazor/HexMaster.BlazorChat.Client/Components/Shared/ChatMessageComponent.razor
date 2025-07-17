@@ -1,0 +1,15 @@
+@using HexMaster.BlazorChat.Chat.Abstractions.DataTransferObjects
+
+<div class="chat-message mb-3">
+    <div class="d-flex justify-content-between align-items-start">
+        <div class="message-content flex-grow-1">
+            <strong class="text-primary">@Message.Sender</strong>
+            <small class="text-muted ms-2">@Message.CreatedOn.ToString("HH:mm")</small>
+            <div class="mt-1">@Message.Message</div>
+        </div>
+    </div>
+</div>
+
+@code {
+    [Parameter, EditorRequired] public ChatMessageDto Message { get; set; } = default!;
+}

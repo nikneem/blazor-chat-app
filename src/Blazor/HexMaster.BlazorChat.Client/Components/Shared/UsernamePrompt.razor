@@ -1,0 +1,43 @@
+@rendermode InteractiveServer
+
+@if (!IsUsernameSet)
+{
+    <div class="card">
+        <div class="card-header">
+            <h4>Welcome to BlazorChat</h4>
+        </div>
+        <div class="card-body">
+            <div class="mb-3">
+                <label for="username" class="form-label">Enter your screen name to join the chat:</label>
+                <input type="text" class="form-control" id="username" @bind="username" @bind:event="oninput" @onkeypress="HandleKeyPress" placeholder="Your screen name" maxlength="50" />
+            </div>
+            <button type="button" class="btn btn-primary" @onclick="SetUsername" disabled="@IsButtonDisabled">
+                Join Chat @username
+            </button>
+        </div>
+    </div>
+}
+
+@code {
+    private string username = string.Empty;
+    [Parameter] public EventCallback<string> OnUsernameSet { get; set; }
+    [Parameter] public bool IsUsernameSet { get; set; }
+
+    private bool IsButtonDisabled => string.IsNullOrWhiteSpace(username);
+
+    private async Task SetUsername()
+    {
+        if (!string.IsNullOrWhiteSpace(username))
+        {
+            await OnUsernameSet.InvokeAsync(username.Trim());
+        }
+    }
+
+    private async Task HandleKeyPress(KeyboardEventArgs e)
+    {
+        if (e.Key == "Enter" && !string.IsNullOrWhiteSpace(username))
+        {
+            await SetUsername();
+        }
+    }
+}

@@ -1,11 +1,19 @@
 using HexMaster.BlazorChat.Client.Components;
+using HexMaster.BlazorChat.Client.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.AddServiceDefaults();
 
 // Add services to the container.
-builder.Services.AddRazorComponents();
+builder.Services.AddRazorComponents()
+    .AddInteractiveServerComponents();
+
+// Add HttpClient and chat service with service discovery
+builder.Services.AddHttpClient<IChatClientService, ChatClientService>(client =>
+{
+    client.BaseAddress = new Uri("http://hexmaster-blazorchat-server/");
+});
 
 var app = builder.Build();
 
@@ -21,10 +29,10 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 
-
 app.UseAntiforgery();
 
 app.MapStaticAssets();
-app.MapRazorComponents<App>();
+app.MapRazorComponents<App>()
+    .AddInteractiveServerRenderMode();
 
 app.Run();

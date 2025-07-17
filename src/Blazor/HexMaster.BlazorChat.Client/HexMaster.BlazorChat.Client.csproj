@@ -12,6 +12,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\..\Aspire\HexMaster.BlazorChat.Aspire\HexMaster.BlazorChat.Aspire.ServiceDefaults\HexMaster.BlazorChat.Aspire.ServiceDefaults.csproj" />
+    <ProjectReference Include="..\HexMaster.BlazorChat.Chat.Abstractions\HexMaster.BlazorChat.Chat.Abstractions.csproj" />
   </ItemGroup>
 
 </Project>
