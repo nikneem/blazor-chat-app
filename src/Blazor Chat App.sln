@@ -1,0 +1,61 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36310.24
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexMaster.BlazorChat.Aspire.AppHost", "Aspire\HexMaster.BlazorChat.Aspire\HexMaster.BlazorChat.Aspire.AppHost\HexMaster.BlazorChat.Aspire.AppHost.csproj", "{EA2CC0EE-7CF3-4B82-9141-DF931E654000}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexMaster.BlazorChat.Aspire.ServiceDefaults", "Aspire\HexMaster.BlazorChat.Aspire\HexMaster.BlazorChat.Aspire.ServiceDefaults\HexMaster.BlazorChat.Aspire.ServiceDefaults.csproj", "{4EE998D8-C1C4-6F2D-D6D1-20920FD98BB1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Aspire", "Aspire", "{02EA681E-C7D8-13C7-8484-4AC65E1B71E8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexMaster.BlazorChat.Client", "Blazor\HexMaster.BlazorChat.Client\HexMaster.BlazorChat.Client.csproj", "{2CFB7CBD-60E4-D5F2-05DF-C916CAAA93E9}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexMaster.BlazorChat.Server", "Blazor\HexMaster.BlazorChat.Server\HexMaster.BlazorChat.Server.csproj", "{628F400A-D3F9-1546-25DA-8672F097769D}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexMaster.BlazorChat.Chat", "Blazor\HexMaster.BlazorChat.Chat\HexMaster.BlazorChat.Chat.csproj", "{936C9CC8-DB6C-9A32-4AC0-D4A487DF3A91}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "HexMaster.BlazorChat.Chat.Abstractions", "Blazor\HexMaster.BlazorChat.Chat.Abstractions\HexMaster.BlazorChat.Chat.Abstractions.csproj", "{B3AB2616-3D27-41AC-8C0D-6C9AC3CCDB17}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{EA2CC0EE-7CF3-4B82-9141-DF931E654000}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EA2CC0EE-7CF3-4B82-9141-DF931E654000}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EA2CC0EE-7CF3-4B82-9141-DF931E654000}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EA2CC0EE-7CF3-4B82-9141-DF931E654000}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4EE998D8-C1C4-6F2D-D6D1-20920FD98BB1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4EE998D8-C1C4-6F2D-D6D1-20920FD98BB1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4EE998D8-C1C4-6F2D-D6D1-20920FD98BB1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4EE998D8-C1C4-6F2D-D6D1-20920FD98BB1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2CFB7CBD-60E4-D5F2-05DF-C916CAAA93E9}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2CFB7CBD-60E4-D5F2-05DF-C916CAAA93E9}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2CFB7CBD-60E4-D5F2-05DF-C916CAAA93E9}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2CFB7CBD-60E4-D5F2-05DF-C916CAAA93E9}.Release|Any CPU.Build.0 = Release|Any CPU
+		{628F400A-D3F9-1546-25DA-8672F097769D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{628F400A-D3F9-1546-25DA-8672F097769D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{628F400A-D3F9-1546-25DA-8672F097769D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{628F400A-D3F9-1546-25DA-8672F097769D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{936C9CC8-DB6C-9A32-4AC0-D4A487DF3A91}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{936C9CC8-DB6C-9A32-4AC0-D4A487DF3A91}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{936C9CC8-DB6C-9A32-4AC0-D4A487DF3A91}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{936C9CC8-DB6C-9A32-4AC0-D4A487DF3A91}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B3AB2616-3D27-41AC-8C0D-6C9AC3CCDB17}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B3AB2616-3D27-41AC-8C0D-6C9AC3CCDB17}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B3AB2616-3D27-41AC-8C0D-6C9AC3CCDB17}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B3AB2616-3D27-41AC-8C0D-6C9AC3CCDB17}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{EA2CC0EE-7CF3-4B82-9141-DF931E654000} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+		{4EE998D8-C1C4-6F2D-D6D1-20920FD98BB1} = {02EA681E-C7D8-13C7-8484-4AC65E1B71E8}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {476EFE05-4C7B-42B9-930F-62819D6071EB}
+	EndGlobalSection
+EndGlobal
