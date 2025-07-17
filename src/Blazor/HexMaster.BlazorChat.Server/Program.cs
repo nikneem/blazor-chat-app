@@ -11,10 +11,15 @@ internal class Program
         builder.AddAzureTableClient("chatmessages");
         builder.AddChatMessages();
 
+        // Add SignalR
+        builder.Services.AddSignalR();
 
         var app = builder.Build();
 
         app.MapDefaultEndpoints().MapChatEndpoints();
+        
+        // Map SignalR hub
+        app.MapHub<HexMaster.BlazorChat.Server.Hubs.ChatHub>("/chathub");
 
         app.Run();
     }

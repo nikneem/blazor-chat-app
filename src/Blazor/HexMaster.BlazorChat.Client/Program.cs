@@ -9,11 +9,14 @@ builder.AddServiceDefaults();
 builder.Services.AddRazorComponents()
     .AddInteractiveServerComponents();
 
-// Add HttpClient and chat service with service discovery
-builder.Services.AddHttpClient<IChatClientService, ChatClientService>(client =>
+// Add HttpClient with named configuration for chat service
+builder.Services.AddHttpClient("ChatApi", client =>
 {
-    client.BaseAddress = new Uri("http://hexmaster-blazorchat-server/");
+    client.BaseAddress = new Uri("http://localhost:5111/");
 });
+
+// Register ChatClientService as singleton to maintain SignalR connection state
+builder.Services.AddSingleton<IChatClientService, ChatClientService>();
 
 var app = builder.Build();
 
