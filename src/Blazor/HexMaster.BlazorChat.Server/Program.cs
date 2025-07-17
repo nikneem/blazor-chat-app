@@ -8,6 +8,7 @@ internal class Program
         var builder = WebApplication.CreateSlimBuilder(args);
 
         builder.AddServiceDefaults();
+        builder.AddAzureTableClient("chatmessages");
         builder.AddChatMessages();
 
 
