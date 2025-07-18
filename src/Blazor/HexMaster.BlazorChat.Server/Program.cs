@@ -1,5 +1,6 @@
 using HexMaster.BlazorChat.Chat.ExtensionMethods;
 using HexMaster.BlazorChat.Server.Endpoints.Chat;
+using HexMaster.BlazorChat.Chat;
 using System.Text.Json;
 
 internal class Program
@@ -21,6 +22,8 @@ internal class Program
         {
             options.PayloadSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
             options.PayloadSerializerOptions.WriteIndented = false;
+            // Configure SignalR to use the same serialization context as the API endpoints
+            options.PayloadSerializerOptions.TypeInfoResolverChain.Insert(0, ChatMessageSerializationContext.Default);
         });
 
         // Add CORS for SignalR

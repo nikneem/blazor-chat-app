@@ -58,34 +58,6 @@ public static class ChatApplicationEndpoints
             return Results.Ok(messages);
         });
 
-        // Test endpoint to manually trigger SignalR message
-        chatGroup.MapPost("/test-signalr", async (IHubContext<ChatHub> hubContext, HttpContext context) =>
-        {
-            Console.WriteLine("Server: Test SignalR endpoint called");
-            try
-            {
-                var testId = Guid.NewGuid();
-                var testSender = "System";
-                var testMessage = "Test message from server";
-                var testCreatedOn = DateTimeOffset.UtcNow;
-                
-                await hubContext.Clients.All.SendAsync("ReceiveMessage", 
-                    testId, 
-                    testSender, 
-                    testMessage, 
-                    testCreatedOn, 
-                    context.RequestAborted);
-                    
-                Console.WriteLine("Server: Test SignalR message sent successfully");
-                return Results.Ok("Test message sent");
-            }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Server: Test SignalR failed: {ex.Message}");
-                return Results.Problem($"Failed to send test message: {ex.Message}");
-            }
-        });
-
         return app;
     }
 
