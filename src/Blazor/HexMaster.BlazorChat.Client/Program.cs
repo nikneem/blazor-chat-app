@@ -12,6 +12,7 @@ builder.Services.AddRazorComponents()
 // Add HttpClient with named configuration for chat service
 builder.Services.AddHttpClient("ChatApi", client =>
 {
+    // Use service discovery name when running in Aspire environment
     client.BaseAddress = new Uri("http://localhost:5111/");
 });
 

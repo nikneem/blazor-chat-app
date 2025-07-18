@@ -98,10 +98,14 @@
 
     protected override async Task OnInitializedAsync()
     {
+        Console.WriteLine("Initializing Chat component...");
+        
         // Subscribe to real-time events
         ChatService.MessageReceived += OnMessageReceived;
         ChatService.UserJoined += OnUserJoined;
         ChatService.UserLeft += OnUserLeft;
+        
+        Console.WriteLine("Event handlers subscribed successfully");
         
         await base.OnInitializedAsync();
     }
@@ -113,6 +117,10 @@
         
         // Start SignalR connection and join chat
         await ChatService.StartConnectionAsync();
+        
+        // Wait a moment for connection to establish
+        await Task.Delay(100);
+        
         await ChatService.JoinChatAsync(username);
         
         await LoadMessages();
@@ -193,10 +201,31 @@
 
     private async void OnMessageReceived(ChatMessageDto message)
     {
-        // Add the new message to the list and update UI
-        messages.Add(message);
-        await InvokeAsync(StateHasChanged);
-        await InvokeAsync(async () => await ScrollToBottom());
+        Console.WriteLine($"Message received: {message.Message} from {message.Sender}");
+        
+        // Check if message already exists to avoid duplicates
+        if (!messages.Any(m => m.Id == message.Id))
+        {
+            // Add the new message to the list
+            messages.Add(message);
+            
+            // Sort messages to ensure proper order
+            messages = messages.OrderBy(m => m.CreatedOn).ToList();
+            
+            Console.WriteLine($"Message added to list. Total messages: {messages.Count}");
+        }
+        else
+        {
+            Console.WriteLine("Message already exists, skipping duplicate");
+        }
+        
+        await InvokeAsync(async () =>
+        {
+            StateHasChanged();
+            // Small delay to ensure DOM is updated before scrolling
+            await Task.Delay(10);
+            await ScrollToBottom();
+        });
     }
 
     private void OnUserJoined(string username)
@@ -215,16 +244,19 @@
     {
         try
         {
+            await Task.Delay(50); // Give the DOM time to update
             await JSRuntime.InvokeVoidAsync("scrollToBottom", "chatMessages");
         }
-        catch
+        catch (Exception ex)
         {
-            // Ignore JS errors
+            Console.WriteLine($"Error scrolling to bottom: {ex.Message}");
         }
     }
 
     public async ValueTask DisposeAsync()
     {
+        Console.WriteLine("Disposing Chat component...");
+        
         // Unsubscribe from events
         ChatService.MessageReceived -= OnMessageReceived;
         ChatService.UserJoined -= OnUserJoined;
@@ -233,9 +265,24 @@
         // Leave chat and disconnect
         if (isUsernameSet && !string.IsNullOrEmpty(currentUsername))
         {
-            await ChatService.LeaveChatAsync(currentUsername);
+            try
+            {
+                await ChatService.LeaveChatAsync(currentUsername);
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error leaving chat: {ex.Message}");
+            }
         }
-        await ChatService.StopConnectionAsync();
+        
+        try
+        {
+            await ChatService.StopConnectionAsync();
+        }
+        catch (Exception ex)
+        {
+            Console.WriteLine($"Error stopping connection: {ex.Message}");
+        }
     }
 }
 
@@ -244,6 +291,8 @@
         const element = document.getElementById(elementId);
         if (element) {
             element.scrollTop = element.scrollHeight;
+            // Alternative smooth scroll option
+            // element.scrollTo({ top: element.scrollHeight, behavior: 'smooth' });
         }
     };
 </script>
